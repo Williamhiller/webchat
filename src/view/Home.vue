@@ -16,12 +16,9 @@
         <mu-list-item title="修改头像" @click="changeAvatar">
           <mu-icon slot="left" value="send"/>
         </mu-list-item>
-        <mu-list-item title="赞助一下" @click="handleTips">
-          <mu-icon slot="left" value="inbox"/>
-        </mu-list-item>
-        <mu-list-item title="github地址" @click="handleGithub">
-          <mu-icon slot="left" value="grade"/>
-        </mu-list-item>
+<!--        <mu-list-item title="赞助一下" @click="handleTips">-->
+<!--          <mu-icon slot="left" value="inbox"/>-->
+<!--        </mu-list-item>-->
         <mu-list-item title="清除缓存" @click="rmLocalData">
           <mu-icon slot="left" value="drafts"/>
         </mu-list-item>
@@ -103,11 +100,11 @@ export default {
       });
     },
     handleTips() {
-      Alert({
-        title: "请我喝杯奶茶",
-        html:
-          '<div><img style="width: 200px" src="//s3.qiufengh.com/money/WechatIMG64.jpeg" /></div>'
-      });
+      // Alert({
+      //   title: "请我喝杯奶茶",
+      //   html:
+      //     '<div><img style="width: 200px" src="//s3.qiufengh.com/money/WechatIMG64.jpeg" /></div>'
+      // });
     }
   },
   computed: {
