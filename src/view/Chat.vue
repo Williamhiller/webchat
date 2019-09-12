@@ -19,16 +19,16 @@
           <mu-icon-button icon="people" slot="right" @click="openSimpleDialog"/>
         </mu-appbar>
       </div>
-      <!-- <div class="notice" v-if="noticeList.length > 0" :class="[noticeBar ? 'notice-hidden' : '']">
-        <div class="notice-container">
-          <div class="notice-li" v-for="(item, key) in noticeList" :key="key">
-            <a :href="item.href">{{key + 1}}. {{item.title}}</a>
-          </div>
-        </div>
-        <div class="notice-tool-bar" @click="handleNotice">
-          {{noticeBar ? '显示通知' : '关闭通知'}}
-        </div>
-      </div> -->
+<!--      <div class="notice" v-if="noticeList.length > 0" :class="[noticeBar ? 'notice-hidden' : '']">-->
+<!--        <div class="notice-container">-->
+<!--          <div class="notice-li" v-for="(item, key) in noticeList" :key="key">-->
+<!--            <a :href="item.href">{{key + 1}}. {{item.title}}</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="notice-tool-bar" @click="handleNotice">-->
+<!--          {{noticeBar ? '显示通知' : '关闭通知'}}-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="chat-inner">
         <div class="chat-container">
           <div v-if="getInfos.length === 0" class="chat-no-people">暂无消息,赶紧来占个沙发～</div>
@@ -91,9 +91,9 @@
           <div class="fun-li" @click="handleTips">
             <i class="icon iconfont icon-zanshang"></i>
           </div>
-          <div class="fun-li" @click="handleGithub">
-            <i class="icon iconfont icon-wenti"></i>
-          </div>
+<!--          <div class="fun-li" @click="handleGithub">-->
+<!--            <i class="icon iconfont icon-wenti"></i>-->
+<!--          </div>-->
         </div>
         <div class="chat">
           <div class="input" @keyup.enter="submess">
@@ -310,10 +310,6 @@
           // 传递消息信息
           socket.emit('message', obj);
           this.chatValue = '';
-        } else {
-          Alert({
-            content: '内容不能为空'
-          });
         }
       }
     },

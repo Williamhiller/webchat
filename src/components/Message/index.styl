@@ -4,24 +4,22 @@
         position: relative;
         clear: both;
         display: inline-block;
-        padding: 16px 40px 16px 20px;
-        margin: 20px 10px 20px 10px;
-        border-radius: 10px;
-        background-color: #fff;
+        margin-bottom :10px
 
         .img {
             max-width: 200px;
+            border-radius 10px;
         }
 
         .name {
-            position: absolute;
-            top: -20px;
             width: 280px;
-            height: 20px;
             overflow: hidden;
             -ms-text-overflow: ellipsis;
             text-overflow: ellipsis;
             white-space: nowrap;
+            color: #999;
+            font-size :12px;
+            font-weight lighter
         }
 
         .msg {
@@ -38,8 +36,8 @@
 
         .head-place {
             display: block;
-            width: 50px;
-            height: 50px;
+            width: 36px;
+            height: 36px;
             position: absolute;
             top: 0;
             background: #fff;
@@ -48,18 +46,25 @@
         }
 
         .head {
-            width: 50px;
-            height: 50px;
-            border-radius: 50px;
+            width: 36px;
+            height: 36px;
+            border-radius: 36px;
         }
-
-        &:after {
+        .msg-wrap {
+          display inline-block
+          position :relative;
+          padding :5px 12px;
+          border-radius :10px;
+          &:after {
             position: absolute;
-            top: 15px;
+            top: 10px;
             content: '';
             width: 0;
             height: 0;
+          }
         }
+
+
     }
 }
 
@@ -67,19 +72,20 @@
     .item {
         // animation: show-chat-even 0.25s 1 ease-in
         float: left;
-        margin-left: 80px;
+        padding-left 50px;
         color: #313035;
-
-        &:after {
-            left: -15px;
-            border-top: 15px solid #fff;
-            border-left: 15px solid transparent;
+        .msg-wrap {
+          background: #fff;
+          &:after {
+            left: -10px;
+            border-top: 10px solid #fff;
+            border-left: 10px solid transparent;
+          }
         }
     }
 
     .name {
         text-align: left;
-        left: -70px;
     }
 
     .time {
@@ -87,7 +93,7 @@
     }
 
     .head-place {
-        left: -70px;
+        left: 0;
     }
 }
 
@@ -95,21 +101,22 @@
     .item {
         // animation: show-chat-odd 0.25s 1 ease-in
         float: right;
-        margin-right: 80px;
         color: #fff;
+        padding-right 50px;
+        text-align :right ;
+      .msg-wrap {
         background: #2196f3;
-
         &:after {
-            right: -15px;
-            border-top: 15px solid #2196f3;
-            border-right: 15px solid transparent;
+          right: -10px;
+          border-top: 10px solid #2196f3;
+          border-right: 10px solid transparent;
         }
+      }
+
     }
 
     .name {
-        color: #313035;
         text-align: right;
-        right: -70px;
     }
 
     .time {
@@ -117,7 +124,7 @@
     }
 
     .head-place {
-        right: -70px;
+        right: 0;
     }
 
     @keyframes show-chat-odd {

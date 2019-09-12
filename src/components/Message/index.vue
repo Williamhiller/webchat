@@ -2,24 +2,26 @@
     <div class="clear" :class="[isSelf ? 'right' : 'left']" ref="msg">
         <div class="item">
             <div class="name">
-                <span v-if="mytime">{{getdate}}</span> &nbsp;&nbsp;{{name}}
+<!--                <span v-if="mytime">{{getdate}}</span> &nbsp;&nbsp;-->
+              {{name}}
             </div>
             <span class="head-place">
                 <img :src="avatar" alt="" class="head">
             </span>
             <div v-if="img">
-                <img
-                    :src="pic"
-                    alt=""
-                    v-preview="img"
-                    class="img"
-                    preview-title-enable="true"
-                    preview-nav-enable="true">
+              <img
+                :src="pic"
+                alt=""
+                v-preview="img"
+                class="img"
+                preview-title-enable="true"
+                preview-nav-enable="true">
             </div>
-            <span v-if="msg">
-                <span v-html="linkMsg" class="msg"></span>
-                <!-- {{msg | link}} -->
-            </span>
+            <div class="msg-wrap" v-if="msg">
+              <span v-html="linkMsg" class="msg"></span>
+              <!-- {{msg | link}} -->
+            </div>
+
         </div>
     </div>
 </template>
@@ -31,7 +33,7 @@ export default {
   props: ["name", "img", "msg", "head", "mytime", "is-self", "container", "isNeedScroll", "firstNode"],
   computed: {
     getdate() {
-      return dateFormat(new Date(this.mytime), "yyyy-MM-dd HH:mm:ss");
+      return dateFormat(new Date(this.mytime), "HH:mm:ss");
     },
     linkMsg() {
       // 防止xss
