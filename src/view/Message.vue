@@ -3,20 +3,20 @@
     <div>
       <mu-list>
         <mu-sub-header>最近聊天记录</mu-sub-header>
-        <mu-list-item title="聊天室1" @click="chatwindow('room1')">
+        <mu-list-item title="必盈应急群一" @click="chatwindow('room1')">
           <div class="avatar" slot="leftAvatar">
             <span class="tip" v-if="unRead1!==0">{{unRead1 > 99 ? '99+' : unRead1}}</span>
             <mu-avatar :src="house1" />
           </div>
           <mu-icon value="chat_bubble" slot="right"/>
         </mu-list-item>
-        <mu-list-item title="聊天室2" @click="chatwindow('room2')">
-          <div class="avatar" slot="leftAvatar">
-            <span class="tip" v-if="unRead2!==0">{{unRead2 > 99 ? '99+' : unRead2}}</span>
-             <mu-avatar :src="house2" />
-          </div>
-          <mu-icon value="chat_bubble" slot="right"/>
-        </mu-list-item>
+        <!--<mu-list-item title="聊天室2" @click="chatwindow('room2')">-->
+          <!--<div class="avatar" slot="leftAvatar">-->
+            <!--<span class="tip" v-if="unRead2!==0">{{unRead2 > 99 ? '99+' : unRead2}}</span>-->
+             <!--<mu-avatar :src="house2" />-->
+          <!--</div>-->
+          <!--<mu-icon value="chat_bubble" slot="right"/>-->
+        <!--</mu-list-item>-->
       </mu-list>
       <mu-divider/>
       <mu-list>
@@ -33,14 +33,13 @@
 <script>
 import Confirm from "@components/Confirm";
 import { mapState } from "vuex";
-import { ROBOT_URL, HOST_URL1, HOST_URL2 } from "@const/index";
+import { ROBOT_URL, HOST_URL1 } from "@const/index";
 import socket from "../socket";
 
 export default {
   data() {
     return {
       house1: HOST_URL1,
-      house2: HOST_URL2,
       robot: ROBOT_URL
     };
   },
@@ -52,8 +51,8 @@ export default {
       if (this.userid) {
         // 处理未读消息
         socket.on("count", userCount => {
-          this.$store.commit("setUnread", userCount);
           console.log(userCount);
+          this.$store.commit("setUnread", userCount);
         });
         this.$store.commit("setLoginState", true);
       }

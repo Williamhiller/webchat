@@ -6,8 +6,10 @@
     <div class="app-bottom" v-if="istab">
       <mu-paper>
         <mu-bottom-nav :value="bottomNav" @change="handleChange">
-          <mu-bottom-nav-item value="recents" title="主页" icon="restore" to="/"/>
-          <mu-bottom-nav-item value="nearby" title="我的" icon="location_on" to="/home"/>
+          <mu-bottom-nav-item value="message" title="消息" icon="forum" to="/"/>
+          <mu-bottom-nav-item value="recommend" title="推荐" icon="table_chart" to="/recommend"/>
+          <mu-bottom-nav-item value="tool" title="工具" icon="business_center" to="/tool"/>
+          <mu-bottom-nav-item value="home" title="我的" icon="person" to="/home"/>
         </mu-bottom-nav>
       </mu-paper>
     </div>
@@ -19,7 +21,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      bottomNav: "recents"
+      bottomNav: "message"
     };
   },
   methods: {

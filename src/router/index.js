@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Index from '../view/Loan.vue';
+import Message from '../view/Message.vue';
+import Recommend from '../view/Recommend.vue';
+import Tool from '../view/Tool.vue';
 import Robot from '../view/Robot';
 import Home from '../view/Home';
 import Register from '../view/Register';
@@ -25,8 +27,8 @@ const router = new Router({
       children: [
         {
           path: '',
-          name: 'index',
-          component: Index
+          name: 'message',
+          component: Message
         },
         {
           path: '/chat',
@@ -39,6 +41,16 @@ const router = new Router({
           component: Robot
         }
       ]
+    },
+    {
+      path: '/recommend',
+      name: 'Recommend',
+      component: Recommend
+    },
+    {
+      path: '/tool',
+      name: 'Tool',
+      component: Tool
     },
     {
       path: '/home',

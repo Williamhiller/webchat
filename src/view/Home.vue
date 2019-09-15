@@ -16,15 +16,13 @@
         <mu-list-item title="修改头像" @click="changeAvatar">
           <mu-icon slot="left" value="send"/>
         </mu-list-item>
-<!--        <mu-list-item title="赞助一下" @click="handleTips">-->
-<!--          <mu-icon slot="left" value="inbox"/>-->
-<!--        </mu-list-item>-->
         <mu-list-item title="清除缓存" @click="rmLocalData">
           <mu-icon slot="left" value="drafts"/>
         </mu-list-item>
       </mu-list>
       <!--<mu-divider/>-->
     </div>
+    <div style="height:80px"></div>
     <div class="logout">
       <mu-raised-button @click="logout" label="退出" class="demo-raised-button" fullWidth/>
     </div>

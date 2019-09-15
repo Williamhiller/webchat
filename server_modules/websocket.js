@@ -22,7 +22,7 @@ const {
   gethAllCache
 } = cache;
 
-const roomList = ['room1', 'room2'];
+const roomList = ['room1'];
 
 function websocket(server) {
     const io = require('socket.io')(server);
@@ -58,7 +58,7 @@ function websocket(server) {
           }
         }
       }
-    }, 1 * 60 * 1000);
+    }, 60 * 1000);
     io.on('connection',  (socket) => {
       //监听用户发布聊天内容
       console.log('socket connect!');
