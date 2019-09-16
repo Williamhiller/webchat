@@ -4,6 +4,7 @@ var bcrypt = require('bcryptjs')
 //加盐数
 var SALT_WORK_FACTOR = 10
 var UserSchema = new mongoose.Schema({
+  id: Number,
   name: {
     unique: true,
     type: String

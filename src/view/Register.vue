@@ -30,14 +30,10 @@ export default {
     async submit() {
       const name = document.form1.username.value.trim();
       const password = document.form1.password.value.trim();
-      const src = `//s3.qiufengh.com/avatar/${Math.ceil(
-        Math.random() * 272
-      )}.jpeg`;
       if (name !== "" && password !== "") {
         const data = {
           name: name,
-          password: password,
-          src: src
+          password: password
         };
         const res = await this.$store.dispatch("registerSubmit", data);
         if (res.status === "success") {

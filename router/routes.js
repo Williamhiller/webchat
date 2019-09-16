@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const UserIds = require('../models/userId')
 const Message = require('../models/message')
 const superagent = require('superagent')
 const path = require('path')
@@ -220,16 +221,25 @@ module.exports = (app) => {
           data: '用户名已存在'
         })
       } else {
-        user = new User(_user)
-        user.save( (err, user) => {
-          if (err) {
-            global.logger.error(err)
+        UserIds.findOneAndUpdate({"name": 'user'}, {$inc: {'id': 1}}, {new: true}, (idErr, ids) =>{
+          if (idErr) {
+            global.logger.error(idErr)
           }
-          res.json({
-            errno: 0,
-            data: '注册成功'
+          _user.id = ids.id
+          _user.src = `//s3.qiufengh.com/avatar/${Math.ceil(
+            Math.random() * 272
+          )}.jpeg`
+          user = new User(_user)
+          user.save( (err, user) => {
+            if (err) {
+              global.logger.error(err)
+            }
+            res.json({
+              errno: 0,
+              data: '注册成功'
+            })
           })
-        })
+        });
       }
     })
   }),

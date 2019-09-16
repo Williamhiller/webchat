@@ -60,11 +60,11 @@ function websocket(server) {
       }
     }, 60 * 1000);
     io.on('connection',  (socket) => {
-      //监听用户发布聊天内容
+      // 监听用户发布聊天内容
       console.log('socket connect!');
       socket.on('message', async (msgObj) => {
         console.log('socket message!');
-        //向所有客户端广播发布的消息
+        // 向所有客户端广播发布的消息
         const {username, src, msg, img, roomid, time} = msgObj;
         if(!msg && !img) {
           return;
