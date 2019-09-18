@@ -7,6 +7,11 @@
         </mu-list-item>
         <mu-divider/>
 
+        <mu-list-item title="亚盘计算 " @click="chatwindow('room1')">
+          <mu-icon value="arrow_forward_ios" slot="right"/>
+        </mu-list-item>
+        <mu-divider/>
+
         <mu-list-item title="欧亚转换 " @click="chatwindow('room1')">
           <mu-icon value="arrow_forward_ios" slot="right"/>
         </mu-list-item>

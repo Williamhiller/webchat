@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Message from '../view/Message.vue';
 import Recommend from '../view/Recommend.vue';
+import Article from '../view/recommend/Article';
 import Tool from '../view/Tool.vue';
 import Robot from '../view/Robot';
 import Home from '../view/Home';
@@ -44,8 +45,15 @@ const router = new Router({
     },
     {
       path: '/recommend',
-      name: 'Recommend',
-      component: Recommend
+      name: 'recommend',
+      component: Recommend,
+      children: [
+        {
+          path: '/article',
+          name: 'article',
+          component: Article
+        }
+      ]
     },
     {
       path: '/tool',
