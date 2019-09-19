@@ -1,12 +1,6 @@
 <template>
   <div class="article">
-    <div class="title">
-      <mu-appbar title="Title">
-        <mu-icon-button icon="chevron_left" slot="left" @click="goback"/>
-        <div class="text-center">推荐单</div>
-        <mu-icon-button icon="" slot="right"/>
-      </mu-appbar>
-    </div>
+    <Header :title="'推荐单'"></Header>
 
     <mu-card>
       <mu-card-title title="Content Title" subTitle="Content Title"/>
@@ -22,8 +16,11 @@
 
 <script>
 
-
+  import Header from '@components/Header';
 export default {
+  components: {
+    Header: Header
+  },
   data() {
     return {
     };

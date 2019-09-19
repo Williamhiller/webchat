@@ -1,15 +1,17 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Message from '../view/Message.vue';
-import Recommend from '../view/Recommend.vue';
+import Recommend from '../view/recommend/Recommend.vue';
 import Article from '../view/recommend/Article';
-import Tool from '../view/Tool.vue';
+import Tool from '../view/tool/Tool.vue';
+import Kickback from '../view/tool/Kickback';
 import Robot from '../view/Robot';
 import Home from '../view/Home';
 import Register from '../view/Register';
 import Login from '../view/Login';
 import Chat from '../view/Chat.vue';
 import Avatar from '../view/Avatar';
+import ToolTransition from '../view/transation/ToolTransition';
 import MessageTransition from '../view/transation/MessageTransition';
 import RecommendTransition from '../view/transation/RecommendTransition.vue';
 import loading from '../components/loading/loading';
@@ -64,7 +66,19 @@ const router = new Router({
     {
       path: '/tool',
       name: 'tool',
-      component: Tool
+      component: ToolTransition,
+      children: [
+        {
+          path: '/tool',
+          name: 'tool',
+          component: Tool
+        },
+        {
+          path: '/kickback',
+          name: 'kickback',
+          component: Kickback
+        }
+      ]
     },
     {
       path: '/home',

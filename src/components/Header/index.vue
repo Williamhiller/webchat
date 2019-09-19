@@ -3,9 +3,8 @@
       <div class="title">
         <mu-appbar title="Title">
             <mu-icon-button icon="chevron_left" slot="left" @click="goback"/>
-            <div class="center">
-            </div>
-            <mu-icon-button icon="expand_more" slot="right"/>
+            <div class="center">{{title}}</div>
+            <mu-icon-button icon="" slot="right"/>
         </mu-appbar>
         </div>
   </div>
@@ -13,6 +12,7 @@
 
 <script>
 export default {
+  props: ['title'],
   components: {},
   data() {
     return {};
