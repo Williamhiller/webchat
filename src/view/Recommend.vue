@@ -24,13 +24,13 @@ export default {
   },
   methods: {
     async goDetail(roomID) {
-      const uerId = this.userid;
-      if (!uerId) {
-        return;
-      }
+      // const uerId = this.userid;
+      // if (!uerId) {
+      //   return;
+      // }
 
       this.$store.commit("setTab", false);
-      this.$router.push({ path: "/article", query: { roomId: roomID } });
+      this.$router.push({ path: "/article/12", query: { roomId: roomID } });
     }
   },
   computed: {

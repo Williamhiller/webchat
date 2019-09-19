@@ -6,7 +6,7 @@
     <div class="app-bottom" v-if="istab">
       <mu-paper>
         <mu-bottom-nav :value="bottomNav" @change="handleChange">
-          <mu-bottom-nav-item value="message" title="消息" icon="forum" to="/"/>
+          <mu-bottom-nav-item value="message" title="消息" icon="forum" to="/message"/>
           <mu-bottom-nav-item value="recommend" title="推荐" icon="table_chart" to="/recommend"/>
           <mu-bottom-nav-item value="tool" title="工具" icon="business_center" to="/tool"/>
           <mu-bottom-nav-item value="home" title="我的" icon="person" to="/home"/>
@@ -23,6 +23,9 @@ export default {
     return {
       bottomNav: "message"
     };
+  },
+  mounted () {
+    this.bottomNav = this.$route.name;
   },
   methods: {
     handleChange(val) {

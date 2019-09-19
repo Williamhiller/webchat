@@ -10,7 +10,8 @@ import Register from '../view/Register';
 import Login from '../view/Login';
 import Chat from '../view/Chat.vue';
 import Avatar from '../view/Avatar';
-import BaseTransition from '../BaseTransition.vue';
+import MessageTransition from '../view/transation/MessageTransition';
+import RecommendTransition from '../view/transation/RecommendTransition.vue';
 import loading from '../components/loading/loading';
 
 Router.prototype.goBack = function () {
@@ -23,11 +24,11 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      name: 'BaseTransition',
-      component: BaseTransition,
+      name: 'MessageTransition',
+      component: MessageTransition,
       children: [
         {
-          path: '',
+          path: '/message',
           name: 'message',
           component: Message
         },
@@ -45,11 +46,16 @@ const router = new Router({
     },
     {
       path: '/recommend',
-      name: 'recommend',
-      component: Recommend,
+      name: 'RecommendTransition',
+      component: RecommendTransition,
       children: [
         {
-          path: '/article',
+          path: '/recommend',
+          name: 'recommend',
+          component: Recommend
+        },
+        {
+          path: '/article/:id',
           name: 'article',
           component: Article
         }
@@ -57,12 +63,12 @@ const router = new Router({
     },
     {
       path: '/tool',
-      name: 'Tool',
+      name: 'tool',
       component: Tool
     },
     {
       path: '/home',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
@@ -72,12 +78,12 @@ const router = new Router({
     },
     {
       path: '/register',
-      name: 'Register',
+      name: 'register',
       component: Register
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     }
   ]
