@@ -7,7 +7,9 @@ import store from './store';
 import './styles/default.css';
 // 使用museui组件
 import MuseUI from 'muse-ui';
+// import './styles/theme.less';
 import 'muse-ui/dist/muse-ui.css';
+import 'muse-ui/dist/theme-light.css'; // 使用 carbon 主题
 import './styles/main.styl';
 import socket from './socket';
 import {queryString} from '@utils/queryString';

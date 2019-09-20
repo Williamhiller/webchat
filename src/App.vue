@@ -5,7 +5,7 @@
     <!--tab选项卡-->
     <div class="app-bottom" v-if="istab">
       <mu-paper>
-        <mu-bottom-nav :value="bottomNav" @change="handleChange">
+        <mu-bottom-nav :value="bottomNav"  @change="handleChange">
           <mu-bottom-nav-item value="message" title="消息" icon="forum" to="/message"/>
           <mu-bottom-nav-item value="recommend" title="推荐" icon="table_chart" to="/recommend"/>
           <mu-bottom-nav-item value="tool" title="工具" icon="business_center" to="/tool"/>
