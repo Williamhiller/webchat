@@ -35,21 +35,6 @@ const store = new Vuex.Store({
     {
       username: ROBOT_NAME,
       src: ROBOT_URL,
-      img: "https://s3.qiufengh.com/webchat/webcaht-my.jpeg"
-    },
-    {
-      username: ROBOT_NAME,
-      src: ROBOT_URL,
-      msg: '期待你的加入'
-    },
-    {
-      username: ROBOT_NAME,
-      src: ROBOT_URL,
-      img: "https://s3.qiufengh.com/webchat/webchat-group.jpeg"
-    },
-    {
-      username: ROBOT_NAME,
-      src: ROBOT_URL,
       msg: '如果还有什么想知道的可以问我'
     }],
     unRead: {
@@ -181,7 +166,7 @@ const store = new Vuex.Store({
         } else if (robotdata.code === 200000) {
           msg = robotdata.text + robotdata.url;
         } else {
-          msg = '暂不支持此类对话';
+          msg = robotdata.text;
         }
         commit('setRobotMsg', {msg, username, src});
       }
