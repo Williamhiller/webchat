@@ -1,7 +1,6 @@
 const User = require('../models/user')
 const UserIds = require('../models/userId')
 const Message = require('../models/message')
-const superagent = require('superagent')
 const path = require('path')
 const fs = require('fs')
 const multer = require('multer');
@@ -328,18 +327,24 @@ module.exports = (app) => {
   // 机器人消息
   app.get('/robotapi', (req, res) => {
     const response = res
-    const info = req.query.info
-    const userid = req.query.id
-    const key = 'fde7f8d0b3c9471cbf787ea0fb0ca043'
-    superagent.post('http://www.tuling123.com/openapi/api')
-      .send({info, userid, key})
-      .end((err, res) => {
-        if (err) {
-          global.logger.error(err)
-        }
-        response.json({
-          data: res.text
-        })
-      })
+    // const info = req.query.info
+    // const userid = req.query.id
+    // const key = 'fde7f8d0b3c9471cbf787ea0fb0ca043'
+    response.json({
+      data: {
+        code: 20000,
+        text: '有什么问题请留言，稍后会回复'
+      }
+    })
+  //   superagent.post('http://www.tuling123.com/openapi/api')
+  //     .send({info, userid, key})
+  //     .end((err, res) => {
+  //       if (err) {
+  //         global.logger.error(err)
+  //       }
+  //       response.json({
+  //         data: res.text
+  //       })
+  //     })
   })
 }

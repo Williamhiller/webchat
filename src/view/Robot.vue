@@ -124,6 +124,7 @@ export default {
     overflow-x: hidden;
     top: 56px;
     bottom: 80px;
+    padding 15px;
   }
 
   .con-input {
