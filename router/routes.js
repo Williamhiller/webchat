@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const UserIds = require('../models/userId')
 const Message = require('../models/message')
+const db = require('../server_modules/mongodb')
 const path = require('path')
 const fs = require('fs')
 const multer = require('multer');
@@ -209,7 +210,6 @@ module.exports = (app) => {
   // 注册
   app.post('/user/signup',  (req, res) => {
     const _user = req.body
-    // console.log(_user)
     User.findOne({name: _user.name},  (err, user) => {
       if (err) {
         global.logger.error(err)
@@ -247,45 +247,38 @@ module.exports = (app) => {
     const _user = req.body
     const name = _user.name
     const password = _user.password
-    User.findOne({name: name}, (err, user) => {
-      if (err) {
-        global.logger.error(err);
-      }
-      if (!user) {
-        res.json({
-          errno: 1,
-          data: '用户不存在'
-        })
-      } else {
-        if (!!password) {
-          user.comparePassword(password, (err, isMatch) => {
-            if (err) {
-              global.logger.error(err);
-            }
-            if (isMatch) {
-              req.session.user = user;
-              global.logger.info('success');
-              res.json({
-                errno: 0,
-                data: '登录成功',
-                name: name,
-                src: user.src
-              })
-            } else {
-              res.json({
-                errno: 1,
-                data: '密码不正确'
-              })
-              global.logger.info('password is not meached');
-            }
-          })
-        } else {
+    console.log(_user.password)
+    console.log(db('users'))
+    db('users').then(function (col) {
+      col.findOne({name: name}, (err, user) => {
+        console.log(user)
+        if (err) {
+          global.logger.error(err);
+        }
+        if (!user) {
           res.json({
             errno: 1,
-            data: '登录失败'
+            data: '用户不存在'
           })
+        } else {
+          if(password === user.password) {
+            req.session.user = user;
+            global.logger.info('success');
+            res.json({
+              errno: 0,
+              data: '登录成功',
+              name: name,
+              src: user.src
+            })
+          }else {
+            res.json({
+              errno: 1,
+              data: '密码不正确'
+            })
+            global.logger.info('password is not meached');
+          }
         }
-      }
+    })
 
     })
   }),

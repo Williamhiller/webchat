@@ -1,6 +1,7 @@
 const xssFilters = require('xss-filters');
 const Count = require('../models/count');
 const Message = require('../models/message');
+const db = require('./mongodb');
 let cache = {};
 
 if(process.env.NODE_ENV === 'production') {

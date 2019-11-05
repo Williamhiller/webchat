@@ -2,10 +2,10 @@
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://william:liu123@cluster0-jyw35.mongodb.net/test?retryWrites=true&w=majority";
 let dbConnect;
-module.exports = async function () {
-  dbConnect = await new Promise(function (resolve, reject) {
+module.exports = async function (name) {
+  return await new Promise(function (resolve, reject) {
     if (dbConnect) {
-      resolve(dbConnect);
+      resolve(dbConnect.collection(name));
       return;
     }
     MongoClient.connect(uri, { useUnifiedTopology: true }, function (err, db) {
@@ -13,10 +13,9 @@ module.exports = async function () {
         reject(err);
         throw err;
       }
-      dbConnect = db;
+      dbConnect = db.db("vuechat");
       console.log('数据库已连接');
-      resolve(dbConnect);
+      resolve(dbConnect.collection(name));
     });
   });
-  return dbConnect;
 };
