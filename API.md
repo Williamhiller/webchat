@@ -3,8 +3,6 @@
 ### POST
 
 #### /user/signin 注册
-多表 ids
-https://blog.csdn.net/z69183787/article/details/52942115
 
 ```
 body: {
