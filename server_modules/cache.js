@@ -15,7 +15,7 @@ function getCacheById(key) {
         const res = cache_data[key] ? cache_data[key] : 0;
         resv(res);
     })
-    
+
 }
 
 function updateCache(key, value) {
@@ -52,12 +52,12 @@ function updatehCache(id, key, value) {
 }
 
 function gethCacheById(id, key) {
-    return new Promise((resv, rej) => {
+    return new Promise((resolve, rej) => {
         let res = 0;
-        if(cache_data[id]) {
-            res = cache_data[id][key];   
+        if (cache_data[id]) {
+          res = cache_data[id][key]
         }
-        resv(res);
+        resolve(res);
     })
 }
 

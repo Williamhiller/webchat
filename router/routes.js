@@ -294,11 +294,16 @@ module.exports = (app) => {
       total: 0,
       current: current
     }
-    db('messages').then(col => {
-      col.find({roomid: id}, (err, message) => {
-        console.log(message);
-      })
-    })
+    // db('messages').then(col => {
+    //   col.find({roomid: id}, (err, messages) => {
+    //     if (err) {
+    //       res.json({
+    //         data: message
+    //       })
+    //     }
+    //     console.log(messages);
+    //   })
+    // })
     try {
       const messageTotal = await Message.find({roomid: id}).count().exec();
       message.total = messageTotal;
