@@ -1,6 +1,5 @@
 const xssFilters = require('xss-filters');
 const Count = require('../models/count');
-const Message = require('../models/message');
 const db = require('./mongodb');
 let cache = {};
 
@@ -83,13 +82,14 @@ function websocket(server) {
 
         global.logger.info(`${mess.username} 对房 ${mess.roomid} 说: ${mess.msg}`);
         if (mess.img === '') {
-          const message = new Message(mess);
-          message.save(function (err, res) {
-            if (err) {
-              global.logger.error(err);
-              return;
-            }
-            global.logger.info(res);
+          db('messages').then(col => {
+            col.save(mess,function (err, res) {
+              if (err) {
+                global.logger.error(err);
+                return;
+              }
+              global.logger.info(res);
+            })
           })
         }
         io.to(mess.roomid).emit('message', mess);

@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const UserIds = require('../models/userId')
 const Message = require('../models/message')
-const db = require('../server_modules/mongodb')
+// const db = require('../server_modules/mongodb')
 const path = require('path')
 const fs = require('fs')
 const multer = require('multer');
@@ -247,8 +247,7 @@ module.exports = (app) => {
     const _user = req.body
     const name = _user.name
     const password = _user.password
-    let col = await db('users')
-    col.findOne({name: name}, (err, user) => {
+    User.findOne({name: name}, (err, user) => {
       if (err) {
         global.logger.error(err);
       }
@@ -258,24 +257,59 @@ module.exports = (app) => {
           data: '用户不存在'
         })
       } else {
-        if(password === user.password) {
-          req.session.user = user;
-          global.logger.info('success');
-          res.json({
-            errno: 0,
-            data: '登录成功',
-            name: name,
-            src: user.src
-          })
-        }else {
+        if (!user) {
           res.json({
             errno: 1,
-            data: '密码不正确'
+            data: '用户不存在'
           })
-          global.logger.info('password is not meached');
+        } else {
+          if(password === user.password) {
+            req.session.user = user;
+            global.logger.info('success');
+            res.json({
+              error: 0,
+              data: '登录成功',
+              name: name,
+              src: user.src
+            })
+          }else {
+            res.json({
+              errno: 1,
+              data: '密码不正确'
+            })
+            global.logger.info('password is not meached');
+          }
         }
       }
-    })
+    // let col = await db('users')
+    // col.findOne({name: name}, (err, user) => {
+    //   if (err) {
+    //     global.logger.error(err);
+    //   }
+    //   if (!user) {
+    //     res.json({
+    //       errno: 1,
+    //       data: '用户不存在'
+    //     })
+    //   } else {
+    //     if(password === user.password) {
+    //       req.session.user = user;
+    //       global.logger.info('success');
+    //       res.json({
+    //         errno: 0,
+    //         data: '登录成功',
+    //         name: name,
+    //         src: user.src
+    //       })
+    //     }else {
+    //       res.json({
+    //         errno: 1,
+    //         data: '密码不正确'
+    //       })
+    //       global.logger.info('password is not meached');
+    //     }
+    //   }
+    // })
   }),
   // 获取历史记录
   app.get('/history/message', async (req, res) => {
@@ -285,42 +319,41 @@ module.exports = (app) => {
     if (!id || !current) {
       global.logger.error('roomid | page current can\'t find')
       res.json({
-        errno: 1
+        error: 1
       });
     }
     const message = {
-      errno: 0,
+      error: 0,
       data: {},
       total: 0,
       current: current
     }
-    // db('messages').then(col => {
-    //   col.find({roomid: id}, (err, messages) => {
-    //     if (err) {
-    //       res.json({
-    //         data: message
-    //       })
+    // db('messages').then(async col => {
+    //   try {
+    //     console.log(8888)
+    //     col.find({roomid: id}, (err, data) => {
+    //       console.log(err, data)
+    //     })
+    //     const messageTotal = await col.find({roomid: id}).count().exec();
+    //
+    //     console.log(messageTotal)
+    //     message.total = messageTotal;
+    //     message.total = messageTotal;
+    //     let skip = parseInt((current - 1) * 20);
+    //     if (+total) { // 大于0
+    //       skip += (messageTotal - total);
     //     }
-    //     console.log(messages);
-    //   })
+    //     const messageData = await col.find({roomid: id}).skip(skip).sort({"time": -1}).limit(20).exec();
+    //     message.data = messageData.reverse();
+    //     res.json({
+    //       data: message
+    //     })
+    //   } catch(e) {
+    //     res.json({
+    //       data: message
+    //     })
+    //   }
     // })
-    try {
-      const messageTotal = await Message.find({roomid: id}).count().exec();
-      message.total = messageTotal;
-      let skip = parseInt((current - 1) * 20);
-      if(+total) {
-        skip += (messageTotal - total);
-      }
-      const messageData = await Message.find({roomid: id}).skip(skip).sort({"time": -1}).limit(20).exec();
-      message.data = messageData.reverse();
-      res.json({
-        data: message
-      })
-    } catch(e) {
-      res.json({
-        data: message
-      })
-    }
   }),
   // 机器人消息
   app.get('/robotapi', (req, res) => {

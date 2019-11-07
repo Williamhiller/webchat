@@ -1,21 +1,14 @@
 //   引入
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://william:liu123@cluster0-jyw35.mongodb.net/test?retryWrites=true&w=majority";
-let dbConnect;
-module.exports = async function (name) {
-  return await new Promise(function (resolve, reject) {
-    if (dbConnect) {
-      resolve(dbConnect.collection(name));
-      return;
-    }
-    MongoClient.connect(uri, { useUnifiedTopology: true }, function (err, db) {
-      if (err) {
-        reject(err);
-        throw err;
-      }
-      dbConnect = db.db("vuechat");
-      console.log('数据库已连接');
-      resolve(dbConnect.collection(name));
-    });
-  });
-};
+const mongoose = require('mongoose');
+// const config = require('../config/config');
+// 用于异步回调
+mongoose.Promise = require('bluebird');
+const uri = "mongodb+srv://william:liu123@cluster0-jyw35.mongodb.net";
+global.db = mongoose.createConnection(uri, {useNewUrlParser: true, useUnifiedTopology: true, dbName: 'test'}).then(function (a,b) {
+  console.log(a, b)
+
+})
+console.log(global.db)
+
+
+module.exports = mongoose
