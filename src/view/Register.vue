@@ -8,6 +8,8 @@
         <br/>
         <mu-text-field label="密码" type="password" labelFloat name="password"/>
         <br/>
+        <mu-text-field label="邀请码" type="number" labelFloat name="invite"/>
+        <br/>
         <div class="btn-radius" @click="submit">注册</div>
       </form>
       <div @click="login" class="tip-user">
@@ -30,10 +32,12 @@ export default {
     async submit() {
       const name = document.form1.username.value.trim();
       const password = document.form1.password.value.trim();
+      const invite = document.form1.invite.value.trim();
       if (name !== "" && password !== "") {
         const data = {
           name: name,
-          password: password
+          password: password,
+          invite: invite
         };
         const res = await this.$store.dispatch("registerSubmit", data);
         if (res.status === "success") {

@@ -207,10 +207,16 @@ module.exports = (app) => {
   });
 
   // 注册
-  app.post('/user/signup',  (req, res) => {
+  app.post('/user/signup', (req, res) => {
     const _user = req.body
     // console.log(_user)
-    User.findOne({name: _user.name},  (err, user) => {
+    if (_user.invite !== 1688) {
+      res.json({
+        errno: 1,
+        data: '邀请码错误'
+      })
+    }
+    User.findOne({name: _user.name}, (err, user) => {
       if (err) {
         global.logger.error(err)
       }
@@ -220,16 +226,14 @@ module.exports = (app) => {
           data: '用户名已存在'
         })
       } else {
-        UserIds.findOneAndUpdate({"name": 'user'}, {$inc: {'id': 1}}, {new: true}, (idErr, ids) =>{
+        UserIds.findOneAndUpdate({"name": 'user'}, {$inc: {'id': 1}}, {new: true}, (idErr, ids) => {
           if (idErr) {
             global.logger.error(idErr)
           }
           _user.id = ids.id
-          _user.src = `//s3.qiufengh.com/avatar/${Math.ceil(
-            Math.random() * 272
-          )}.jpeg`
+          _user.src = `//s3.qiufengh.com/avatar/${Math.ceil(Math.random() * 272)}.jpeg`
           user = new User(_user)
-          user.save( (err, user) => {
+          user.save((err, u) => {
             if (err) {
               global.logger.error(err)
             }
