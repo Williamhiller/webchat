@@ -210,11 +210,12 @@ module.exports = (app) => {
   app.post('/user/signup', (req, res) => {
     const _user = req.body
     // console.log(_user)
-    if (_user.invite !== 1688) {
+    if (_user.invite !== '1688') {
       res.json({
         errno: 1,
         data: '邀请码错误'
       })
+      return;
     }
     User.findOne({name: _user.name}, (err, user) => {
       if (err) {
