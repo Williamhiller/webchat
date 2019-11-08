@@ -57,9 +57,9 @@
       </div>
       <div class="bottom">
         <div class="functions">
-          <div class="fun-li" @click="imgupload">
-            <i class="icon iconfont icon-camera"></i>
-          </div>
+<!--          <div class="fun-li" @click="imgupload">-->
+<!--            <i class="icon iconfont icon-camera"></i>-->
+<!--          </div>-->
           <div class="fun-li emoji">
             <i class="icon iconfont icon-emoji"></i>
             <div class="emoji-content" v-show="getEmoji">
@@ -88,9 +88,9 @@
               </div>
             </div>
           </div>
-          <div class="fun-li" @click="handleTips">
-            <i class="icon iconfont icon-zanshang"></i>
-          </div>
+<!--          <div class="fun-li" @click="handleTips">-->
+<!--            <i class="icon iconfont icon-zanshang"></i>-->
+<!--          </div>-->
 <!--          <div class="fun-li" @click="handleGithub">-->
 <!--            <i class="icon iconfont icon-wenti"></i>-->
 <!--          </div>-->
